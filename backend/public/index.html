@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 95%;
+            padding: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #msg { margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>🔐 Login</h2>
+        <form id="form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="senha" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p id="msg"></p>
+    </div>
+    <script>
+        document.getElementById('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const msg = document.getElementById('msg');
+            
+            try {
+                const r = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
+                });
+                const d = await r.json();
+                if (r.ok) {
+                    msg.style.color = 'green';
+                    msg.textContent = '✅ ' + d.message;
+                } else {
+                    msg.style.color = 'red';
+                    msg.textContent = '❌ ' + d.error;
+                }
+            } catch (e) {
+                msg.style.color = 'red';
+                msg.textContent = '❌ Erro';
+            }
+        });
+    </script>
+</body>
+</html>
