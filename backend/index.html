@@ -113,14 +113,14 @@
                 
                 if (response.ok) {
                     mensagem.style.color = '#27ae60';
-                    mensagem.textContent = '✅ ' + data.message;
+                    mensagem.textContent = ' ' + data.message;
                 } else {
                     mensagem.style.color = '#e74c3c';
-                    mensagem.textContent = '❌ ' + data.error;
+                    mensagem.textContent = ' ' + data.error;
                 }
             } catch (error) {
                 mensagem.style.color = '#e74c3c';
-                mensagem.textContent = '❌ Erro de conexão';
+                mensagem.textContent = ' Erro de conexão';
             }
         });
     </script>
