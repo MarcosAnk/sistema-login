@@ -2,7 +2,7 @@
 
 Sistema de autenticação funcional desenvolvido com Node.js e Express.
 
-## 🚀 Tecnologias
+## Tecnologias
 
 - **Frontend:** HTML5, CSS3, JavaScript
 - **Backend:** Node.js, Express
